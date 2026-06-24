@@ -1,0 +1,150 @@
+/* ============================================
+   Typography Tokens (rem 기반 · M3 스케일 참조)
+   - 루트 16px 기준: 1rem = 16px
+   - 사이즈는 Material 3 타입 스케일에 앵커링하고,
+     한글·읽기 가독성에 맞춰 보정함
+   - 토큰 이름(API)은 기존 그대로 유지 → 드롭인 교체 가능
+   ============================================ */
+
+:root {
+  /* Font Family */
+  --font-family-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-family-serif: var(--font-serif), "Times New Roman", serif;
+
+  /* Font Size — 모바일 기준 (M3 참조) */
+  --text-xs: 0.75rem; /* 12px · caption (한글 최소 가독선, 기존 11px→12px) */
+  --text-sm: 0.8125rem; /* 13px · 보조 본문 ⚠️ 입력 필드엔 쓰지 말 것 */
+  --text-base: 1rem; /* 16px · 본문 + 입력 (iOS 자동확대 방지선) · M3 Body Large */
+  --text-md: 1.0625rem; /* 17px · M3 Title 영역 */
+  --text-lg: 1.25rem; /* 20px */
+  --text-xl: 1.375rem; /* 22px · M3 Title Large */
+  --text-2xl: 1.5rem; /* 24px · M3 Headline Small */
+  --text-3xl: 1.75rem; /* 28px · M3 Headline Medium */
+
+  /* Font Weight */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Line Height — 한글 장문 가독성 우선 (M3 고정 px 대신 unitless 유지) */
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+}
+
+/* 태블릿/데스크탑 대응 (본문 base는 16px 유지, 헤딩만 확대) */
+@media (min-width: 768px) {
+  :root {
+    --text-md: 1.125rem; /* 18px */
+    --text-lg: 1.375rem; /* 22px */
+    --text-xl: 1.625rem; /* 26px */
+    --text-2xl: 1.875rem; /* 30px */
+    --text-3xl: 2.25rem; /* 36px */
+  }
+}
+
+/* ============================================
+   Text Styles — 시맨틱 클래스
+   size + weight + line-height를 한 덩어리로 묶음.
+   color, font-family는 사용처에서 별도 지정.
+
+   - display:     큰 타이틀 (랜딩 등)            → M3 Headline
+   - heading-lg:  페이지 제목 (마이 trace 상단)   → M3 Title Large
+   - heading-md:  섹션 제목, 모달 제목
+   - heading-sm:  카드 안 작은 제목 (책 제목 등)
+   - body-lg:     Trace 상세 본문 (장문 읽기)     → M3 Body Large
+   - body-md:     기본 본문 (피드 카드 등)
+   - body-sm:     작은 본문, 보조 설명 ⚠️입력 금지
+   - label-md:    버튼, 탭 라벨 (16px → 입력에 써도 안전)
+   - label-sm:    작은 버튼, 메타정보 라벨
+   - caption:     메타정보 (시간, 작가명, 카운트)
+   - quote:       인용문 (serif 폴백)
+   ============================================ */
+
+.text-display {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-heading-lg {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-heading-md {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.text-heading-sm {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.text-body-lg {
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body-md {
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+}
+
+.text-body-sm {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+}
+
+.text-label-md {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+.text-label-sm {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+}
+
+.text-caption {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+}
+
+.text-quote {
+  font-family: var(--font-family-serif);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+}
+
+/* ============================================
+   Form inputs — iOS Safari 자동확대 방지
+   포커스 시 글자 16px 미만이면 Safari가 화면을 확대함.
+   base(=1rem=16px) 이상을 강제해 "원인"을 제거한다.
+   ⚠️ viewport의 maximum-scale/user-scalable=no 로 끄지 말 것
+      (증상은 사라지지만 핀치줌까지 죽임 = 접근성 위반)
+   ============================================ */
+input,
+textarea,
+select {
+  font-size: var(--text-base);
+}
