@@ -1,10 +1,12 @@
 @import "./colors.css";
 @import "./typography.css";
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-}
-body {
-  min-height: 100dvh; /* 모바일 주소창 대응 (100vh보다 정확) */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  body {
+    min-height: 100dvh; /* 모바일 주소창 대응 (100vh보다 정확) */
+  }
 }
