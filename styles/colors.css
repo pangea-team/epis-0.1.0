@@ -25,6 +25,18 @@
   --color-brand-primary: var(--primary);
   --color-brand-hover: #333333;
 
+  /* Type accent colors */
+  --color-type-paradox-bg: #fef3c7;
+  --color-type-paradox-text: #92400e;
+  --color-type-creative-bg: #ede9fe;
+  --color-type-creative-text: #5b21b6;
+  --color-type-logical-bg: #dbeafe;
+  --color-type-logical-text: #1e40af;
+  --color-type-empathic-bg: #fce7f3;
+  --color-type-empathic-text: #9d174d;
+  --color-type-default-bg: #f4f4f4;
+  --color-type-default-text: #404040;
+
   /* Semantic */
   --color-success: #16a34a;
   --color-warning: #eab308;
