@@ -60,9 +60,9 @@ export default function Home() {
           <SurveyButton />
         </section>
 
-        {/* What is EPIS — #f7f5f1 */}
+        {/* What is EPIS — #faf6f2 */}
         <FadeIn>
-          <section className="bg-[#f9f5f1] px-6 py-14">
+          <section className="bg-[#faf6f2] px-6 py-14">
             <p className="text-label-sm mb-3 uppercase tracking-widest text-foreground">
               WHAT IS EPIS
             </p>
@@ -75,9 +75,9 @@ export default function Home() {
           </section>
         </FadeIn>
 
-        {/* How it Works — #f4f1eb */}
+        {/* How it Works — #f8f3ef */}
         <FadeIn>
-          <section className="bg-[#f6f0eb] px-6 py-14">
+          <section className="bg-[#f8f3ef] px-6 py-14">
             <p className="text-label-sm mb-3 uppercase tracking-widest text-foreground">
               HOW IT WORKS
             </p>
@@ -98,9 +98,9 @@ export default function Home() {
           </section>
         </FadeIn>
 
-        {/* Why EPIS — #f0ece4 */}
+        {/* Why EPIS — #f6f0eb */}
         <FadeIn>
-          <section className="bg-[#f2ebe4] px-6 py-14">
+          <section className="bg-[#f6f0eb] px-6 py-14">
             <p className="text-label-sm mb-3 uppercase tracking-widest text-foreground">WHY EPIS</p>
             <h2 className="text-heading-lg mb-8 font-serif text-foreground">
               사유가 깊은 사람들이,
@@ -116,9 +116,9 @@ export default function Home() {
           </section>
         </FadeIn>
 
-        {/* Final CTA — #ece7dd */}
+        {/* Final CTA — #f4ede7 */}
         <FadeIn>
-          <section className="bg-[#eee5dd] px-6 py-24">
+          <section className="bg-[#f4ede7] px-6 py-24">
             {/*
               대비 검증: #6d6d6d(muted-foreground) on #ece7dd ≈ 4.0:1 → WCAG AA(4.5:1) 미만.
               16px 본문 텍스트 해당. text-foreground로 조정 (foreground ≈ #1a1a1a, 대비 ~16:1).
@@ -147,7 +147,7 @@ export default function Home() {
           </section>
         </FadeIn>
 
-        <footer className="bg-[#eee5dd] px-6 py-8">
+        <footer className="bg-[#f4ede7] px-6 py-8">
           <p className="text-caption text-muted-foreground">© 2025 Epis</p>
         </footer>
       </div>
