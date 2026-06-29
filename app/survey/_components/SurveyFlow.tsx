@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { analyzeAnswers } from '@/lib/survey/analyze'
 import { QUESTIONS } from '@/lib/survey/questions'
 import SurveyFinished from './SurveyFinished'
 import SurveyQuestion from './SurveyQuestion'
@@ -32,7 +33,8 @@ export default function SurveyFlow() {
   }
 
   if (finished) {
-    return <SurveyFinished onBack={back} />
+    const { main, sub } = analyzeAnswers(answers)
+    return <SurveyFinished onBack={back} main={main} sub={sub} />
   }
 
   const q = QUESTIONS[current]

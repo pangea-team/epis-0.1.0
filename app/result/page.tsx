@@ -1,17 +1,31 @@
-import { getPersonaResult } from '@/lib/personas/data'
+import type { PersonaType } from '@/lib/personas/data'
+import { getPersonaResult, PERSONA_TYPES } from '@/lib/personas/data'
 import { getTypeStyle } from '@/lib/personas/styles'
 import MatchingCTA from './_components/MatchingCTA'
 import PersonaHero from './_components/PersonaHero'
 import ResultSection from './_components/ResultSection'
 
-const DEMO_MAIN = '본질 관통형' as const
-const DEMO_SUB = '역설 수용형' as const
-export default function ResultPage() {
-  const result = getPersonaResult(DEMO_MAIN, DEMO_SUB)
+type Props = {
+  searchParams: Promise<{ main?: string; sub?: string }>
+}
+
+const FALLBACK_MAIN: PersonaType = '본질 관통형'
+const FALLBACK_SUB: PersonaType = '역설 수용형'
+
+function toPersonaType(value: string | undefined, fallback: PersonaType): PersonaType {
+  return PERSONA_TYPES.includes(value as PersonaType) ? (value as PersonaType) : fallback
+}
+
+export default async function ResultPage({ searchParams }: Props) {
+  const params = await searchParams
+  const main = toPersonaType(params.main, FALLBACK_MAIN)
+  const sub = toPersonaType(params.sub, FALLBACK_SUB)
+
+  const result = getPersonaResult(main, sub)
   if (!result) return null
 
-  const mainStyle = getTypeStyle(DEMO_MAIN)
-  const subStyle = getTypeStyle(DEMO_SUB)
+  const mainStyle = getTypeStyle(main)
+  const subStyle = getTypeStyle(sub)
   const bgStyle = {
     background: `
       radial-gradient(ellipse at 25% 35%, rgba(${mainStyle.rgb}, 0.85) 0%, transparent 58%),
@@ -29,7 +43,7 @@ export default function ResultPage() {
   return (
     <main className="min-h-screen" style={bgStyle}>
       <div className="mx-auto max-w-220">
-        <PersonaHero title={result.title} main={DEMO_MAIN} sub={DEMO_SUB} />
+        <PersonaHero title={result.title} main={main} sub={sub} />
 
         {sections.map((section) => (
           <ResultSection key={section.label} label={section.label} content={section.content} />

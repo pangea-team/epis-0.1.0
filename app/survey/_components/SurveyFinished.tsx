@@ -1,12 +1,18 @@
+'use client'
+
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { ROUTES } from '@/lib/routes'
+import type { PersonaType } from '@/lib/personas/data'
 
 type Props = {
   onBack: () => void
+  main: PersonaType
+  sub: PersonaType
 }
 
-export default function SurveyFinished({ onBack }: Props) {
+export default function SurveyFinished({ onBack, main, sub }: Props) {
+  const resultHref = `/result?main=${encodeURIComponent(main)}&sub=${encodeURIComponent(sub)}`
+
   return (
     <div className="flex flex-1 flex-col">
       {/* Back button */}
@@ -34,7 +40,7 @@ export default function SurveyFinished({ onBack }: Props) {
         </p>
         <div className="border-t border-border pt-5">
           <Link
-            href={ROUTES.RESULT}
+            href={resultHref}
             className="text-label-md flex w-full items-center justify-between bg-primary px-6 py-4.5 text-primary-foreground transition hover:bg-(--color-brand-hover) active:scale-[0.99]"
           >
             <span>결과 확인하기</span>

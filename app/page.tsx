@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#fcf9f6]">
       <div className="mx-auto max-w-220">
-        {/* Hero — #faf9f6 */}
+        {/* Hero — #fcf9f6 */}
         <section className="flex flex-col px-6 pt-28 pb-16">
           <h1 className="text-display mb-7 font-serif text-pretty text-foreground">
             당신의 사유에는
@@ -147,7 +147,7 @@ export default function Home() {
           </section>
         </FadeIn>
 
-        <footer className="bg-[#f4ede7] px-6 py-8">
+        <footer className="bg-[#eee5dd] px-6 py-8">
           <p className="text-caption text-muted-foreground">© 2025 Epis</p>
         </footer>
       </div>
