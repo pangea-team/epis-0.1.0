@@ -15,6 +15,8 @@
   /* EPIS 고유 토큰 */
   --color-surface-elevated: #ffffff;
   --color-surface-muted: #f4f4f4;
+  --color-surface-warm: #faf9f6;
+  --color-surface-deep: #e8e2d4;
   --color-text-tertiary: #999999;
   --color-text-inverse: #ffffff;
   --color-text-disabled: #c4c4c4;
@@ -25,17 +27,23 @@
   --color-brand-primary: var(--primary);
   --color-brand-hover: #333333;
 
-  /* Type accent colors */
-  --color-type-paradox-bg: #fef3c7;
-  --color-type-paradox-text: #92400e;
-  --color-type-creative-bg: #ede9fe;
-  --color-type-creative-text: #5b21b6;
-  --color-type-logical-bg: #dbeafe;
-  --color-type-logical-text: #1e40af;
-  --color-type-empathic-bg: #fce7f3;
-  --color-type-empathic-text: #9d174d;
-  --color-type-default-bg: #f4f4f4;
-  --color-type-default-text: #404040;
+  /* Type accent colors — 7 persona types */
+  --color-type-essence-bg: #EEEDFE;
+  --color-type-essence-text: #3C3489;
+  --color-type-meta-bg: #E6F1FB;
+  --color-type-meta-text: #0C447C;
+  --color-type-paradox-bg: #FBEAF0;
+  --color-type-paradox-text: #72243E;
+  --color-type-creative-bg: #FAEEDA;
+  --color-type-creative-text: #633806;
+  --color-type-social-bg: #E1F5EE;
+  --color-type-social-text: #085041;
+  --color-type-innovate-bg: #FAECE7;
+  --color-type-innovate-text: #712B13;
+  --color-type-strategy-bg: #F1EFE8;
+  --color-type-strategy-text: #444441;
+  --color-type-default-bg: #F1EFE8;
+  --color-type-default-text: #444441;
 
   /* Semantic */
   --color-success: #16a34a;

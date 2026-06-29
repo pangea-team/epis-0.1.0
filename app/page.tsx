@@ -1,47 +1,37 @@
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { ROUTES } from '@/lib/routes'
-
-const TOPICS = [
-  { num: 'I', label: '죽음' },
-  { num: 'II', label: '사랑' },
-  { num: 'III', label: '타인' },
-  { num: 'IV', label: '삶의 의미' },
-  { num: 'V', label: '성공' },
-  { num: 'VI', label: '고통' },
-  { num: 'VII', label: '진리' },
-  { num: 'VIII', label: '규칙과 자유' },
-  { num: 'IX', label: '공감' },
-  { num: 'X', label: '부' },
-  { num: 'XI', label: '창조' },
-  { num: 'XII', label: '자기 이해' },
-]
+import { FadeIn } from './_components/FadeIn'
 
 const STEPS = [
   {
-    num: '01',
-    title: '12개 질문에 답합니다',
-    desc: '각 주제에 대해 더 끌리는 문장을 고릅니다. 정답은 없습니다.',
+    index: '#1',
+    question: '나는 어떻게 사유하는가',
+    answer: '열두 개의 질문이 당신만의 지적 페르소나를 조각합니다.',
   },
   {
-    num: '02',
-    title: '사유 유형이 분석됩니다',
-    desc: '선택 패턴을 바탕으로 당신만의 사유 유형이 분석됩니다.',
+    index: '#2',
+    question: '무엇을 꺼내지 못했는가',
+    answer: '세상 밖에 내보이지 못한 이야기를, 이곳에서.',
   },
   {
-    num: '03',
-    title: '결이 맞는 사람과 이어집니다',
-    desc: '사유 리포트와 함께 결이 맞닿는 사람을 연결해드립니다.',
+    index: '#3',
+    question: '누구와 깊어지고 싶은가',
+    answer: '사유가 닮은 한 사람과 연결됩니다.',
   },
 ]
 
-function SurveyButton() {
+type SurveyButtonProps = {
+  label?: string
+}
+
+function SurveyButton({ label = '나의 지적 페르소나 확인하기' }: SurveyButtonProps) {
   return (
     <Link
       href={ROUTES.SURVEY}
       className="text-label-md flex w-full items-center justify-between bg-primary px-6 py-4.5 text-primary-foreground transition hover:bg-(--color-brand-hover) active:scale-[0.99]"
     >
-      <span>사유 진단 시작하기</span>
+      <span>{label}</span>
       <ArrowRight size={18} />
     </Link>
   )
@@ -49,93 +39,115 @@ function SurveyButton() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-[#fcf9f6]">
       <div className="mx-auto max-w-220">
-        {/* Hero */}
-        <section className="flex flex-col px-6 pt-24 pb-16">
-          <p className="text-caption mb-8 tracking-widest text-muted-foreground">EPIS</p>
-          <h1 className="text-display mb-6.5 font-serif text-pretty text-foreground">
-            사유의 결이 맞는
+        {/* Hero — #faf9f6 */}
+        <section className="flex flex-col px-6 pt-28 pb-16">
+          <h1 className="text-display mb-7 font-serif text-pretty text-foreground">
+            당신의 사유에는
             <br />
-            사람을 매칭해드립니다
+            고유한 무늬가 있습니다.
           </h1>
-          <p className="text-body-lg mb-7.5 font-serif text-pretty text-muted-foreground">
-            당신이 고른 문장으로 사유의 결을 읽고,
-            <br />그 결이 맞닿는 사람을 잇습니다.
+          <p className="text-body-lg mb-12 font-serif text-pretty text-muted-foreground">
+            단순한 스펙을 넘어, 당신의 사유 방식과
+            <br />
+            세상을 바라보는 관점을 아카이빙하는
+            <br />
+            프리미엄 취향 커뮤니티.
           </p>
-          <div className="border-t border-border pt-6.5">
-            <p className="text-body-md mb-2.5 text-muted-foreground">
-              약 15분의 진단으로 당신의 사유 유형을 분석해드립니다.
-            </p>
-          </div>
-          <div className="mt-12">
-            <SurveyButton />
-          </div>
-        </section>
-
-        {/* What is Epis */}
-        <section className="border-t border-border px-6 py-16">
-          <p className="text-caption mb-6 tracking-widest text-muted-foreground">WHAT IS EPIS</p>
-          <h2 className="text-heading-lg mb-6 font-serif text-foreground">
-            Epis는 당신과 사유의 결이 닮은 사람을 찾아드립니다.
-          </h2>
-          <p className="text-body-lg font-serif text-pretty text-muted-foreground">
-            죽음을 어떻게 바라보는지, 성공을 무엇으로 정의하는지 — 삶을 관통하는 질문 앞에서 당신이
-            어떤 문장에 끌리는지를 봅니다.
-          </p>
-          <p className="text-body-lg mt-4 font-serif text-pretty text-muted-foreground">
-            그 선택들이 모여 당신의 사유의 결이 됩니다. <br />그 결이 맞닿는 사람을 연결해드립니다.
-          </p>
-        </section>
-
-        {/* How it works */}
-        <section className="border-t border-border px-6 py-16">
-          <p className="text-caption mb-6 tracking-widest text-muted-foreground">HOW IT WORKS</p>
-          <h2 className="text-heading-lg mb-10 font-serif text-foreground">세 단계로 완성됩니다</h2>
-          <div className="flex flex-col gap-8">
-            {STEPS.map((step) => (
-              <div key={step.num} className="flex gap-6">
-                <span className="text-caption mt-0.5 w-6 shrink-0 text-muted-foreground">
-                  {step.num}
-                </span>
-                <div>
-                  <p className="text-heading-sm mb-1.5 text-foreground">{step.title}</p>
-                  <p className="text-body-md text-muted-foreground">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 12 Topics */}
-        <section className="border-t border-border px-6 py-16">
-          <p className="text-caption mb-6 tracking-widest text-muted-foreground">12 THEMES</p>
-          <h2 className="text-heading-lg mb-10 font-serif text-foreground">
-            어떤 주제를 탐구하나요?
-          </h2>
-          <div className="grid grid-cols-2 gap-px border border-border bg-border">
-            {TOPICS.map((topic) => (
-              <div key={topic.num} className="flex flex-col gap-1.5 bg-background px-4 py-5">
-                <span className="text-caption text-muted-foreground">{topic.num}</span>
-                <span className="text-heading-sm font-serif text-foreground">{topic.label}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="border-t border-border px-6 py-16">
-          <h2 className="text-heading-lg mb-3 font-serif text-foreground">
-            열두 가지 주제를 따라가보세요
-          </h2>
-          <p className="text-body-lg mb-10 font-serif text-pretty text-muted-foreground">
-            당신이 고른 문장들이 모여 사유의 결이 됩니다.
-          </p>
+          {/* TODO: DB 연결 후 실제 수치로 교체 */}
+          {/* <p className="text-caption mb-4 text-muted-foreground">지금까지 142명이 참여했습니다</p> */}
           <SurveyButton />
         </section>
 
-        {/* Footer */}
-        <footer className="border-t border-border px-6 py-8">
+        {/* What is EPIS — #f7f5f1 */}
+        <FadeIn>
+          <section className="bg-[#f9f5f1] px-6 py-14">
+            <p className="text-label-sm mb-3 uppercase tracking-widest text-foreground">
+              WHAT IS EPIS
+            </p>
+            <h2 className="text-heading-lg mb-6 font-serif text-foreground">
+              사유하는 사람들을 연결합니다.
+            </h2>
+            <p className="text-body-md max-w-xs font-serif text-muted-foreground">
+              12개의 질문으로 지적 페르소나를 발견하고, 깊은 대화를 나눌 사람을 찾아드립니다.
+            </p>
+          </section>
+        </FadeIn>
+
+        {/* How it Works — #f4f1eb */}
+        <FadeIn>
+          <section className="bg-[#f6f0eb] px-6 py-14">
+            <p className="text-label-sm mb-3 uppercase tracking-widest text-foreground">
+              HOW IT WORKS
+            </p>
+            <h2 className="text-heading-lg mb-12 font-serif text-foreground">
+              당신은 어떤 사람인가요
+            </h2>
+            <div className="flex flex-col gap-12">
+              {STEPS.map((step) => (
+                <div key={step.index}>
+                  <p className="text-caption mb-3 font-serif italic text-muted-foreground">
+                    {step.index}
+                  </p>
+                  <p className="text-heading-sm mb-2 font-serif text-foreground">{step.question}</p>
+                  <p className="text-body-md text-muted-foreground">{step.answer}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </FadeIn>
+
+        {/* Why EPIS — #f0ece4 */}
+        <FadeIn>
+          <section className="bg-[#f2ebe4] px-6 py-14">
+            <p className="text-label-sm mb-3 uppercase tracking-widest text-foreground">WHY EPIS</p>
+            <h2 className="text-heading-lg mb-8 font-serif text-foreground">
+              사유가 깊은 사람들이,
+              <br />
+              가장 안전하게 연결되는 곳.
+            </h2>
+            <p className="text-body-md mb-4 max-w-xs font-serif text-muted-foreground">
+              매칭은 알고리즘이 아닌, 사람의 안목으로 완성됩니다.
+            </p>
+            <p className="text-body-md max-w-xs font-serif text-muted-foreground">
+              운영진이 직접 사유의 결을 살피고, 가장 깊게 맞닿는 파트너를 승인합니다.
+            </p>
+          </section>
+        </FadeIn>
+
+        {/* Final CTA — #ece7dd */}
+        <FadeIn>
+          <section className="bg-[#eee5dd] px-6 py-24">
+            {/*
+              대비 검증: #6d6d6d(muted-foreground) on #ece7dd ≈ 4.0:1 → WCAG AA(4.5:1) 미만.
+              16px 본문 텍스트 해당. text-foreground로 조정 (foreground ≈ #1a1a1a, 대비 ~16:1).
+            */}
+            <p className="text-body-md mb-10 max-w-xs font-serif text-foreground">
+              에피스에서의 연결에는 정해진 결말이 없습니다.
+            </p>
+            <p className="text-body-lg mb-2 font-serif text-foreground">
+              때로는 <span className="text-foreground">지적인 친구</span>를,
+            </p>
+            <p className="text-body-lg mb-2 font-serif text-foreground">
+              때로는 <span className="text-foreground">대화가 통하는 연인</span>을,
+            </p>
+            <p className="text-body-lg mb-12 font-serif text-foreground">
+              어쩌면 <span className="text-foreground">평생을 함께할 동반자</span>가 될 수도
+              있습니다.
+            </p>
+            <h2 className="text-heading-lg mb-10 font-serif text-foreground">
+              이제 가장 먼저,
+              <br />
+              마주해 본 적 없는 당신의 내면을
+              <br />
+              만날 준비 되셨나요?
+            </h2>
+            <SurveyButton label="지금 나의 지적 페르소나 찾기" />
+          </section>
+        </FadeIn>
+
+        <footer className="bg-[#eee5dd] px-6 py-8">
           <p className="text-caption text-muted-foreground">© 2025 Epis</p>
         </footer>
       </div>
